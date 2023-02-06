@@ -1,4 +1,4 @@
-#include "deck.hh"
+#include "deck.h"
 #include <iostream>
 
 using namespace std;

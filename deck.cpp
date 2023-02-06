@@ -1,4 +1,4 @@
-#include "deck.hh"
+#include "deck.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -134,14 +134,18 @@ void Deck::put(Card card) {
     cards.push_back(card);
 }
 
-/*
-iterera genom cardlist
-om card < card+1
-*/
+
 
 void Deck::insert(vector<Card> &cardlist, Card card) {
 
-   
-
-    return;
+    for(int i = 0; i < cardlist.size(); i++)
+    {
+        int j = i;
+        while(j > 0 && cardlist[j-1] > cardlist[j])
+        {
+            card = cardlist[j-1];
+            cardlist[j-1] = cardlist[j];
+            cardlist[j] = card;
+        }
+    }
 }
