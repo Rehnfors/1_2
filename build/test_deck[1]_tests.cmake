@@ -1,0 +1,5 @@
+add_test( Card.init /home/jesper/projekt/1_2/build/test_deck [==[--gtest_filter=Card.init]==] --gtest_also_run_disabled_tests)
+set_tests_properties( Card.init PROPERTIES WORKING_DIRECTORY /home/jesper/projekt/1_2/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test( Deck.init /home/jesper/projekt/1_2/build/test_deck [==[--gtest_filter=Deck.init]==] --gtest_also_run_disabled_tests)
+set_tests_properties( Deck.init PROPERTIES WORKING_DIRECTORY /home/jesper/projekt/1_2/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set( test_deck_TESTS Card.init Deck.init)

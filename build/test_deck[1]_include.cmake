@@ -1,0 +1,5 @@
+if(EXISTS "/home/jesper/projekt/1_2/build/test_deck[1]_tests.cmake")
+  include("/home/jesper/projekt/1_2/build/test_deck[1]_tests.cmake")
+else()
+  add_test(test_deck_NOT_BUILT test_deck_NOT_BUILT)
+endif()
