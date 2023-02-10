@@ -144,23 +144,15 @@ void Deck::put(Card card)
     cards.push_back(card);
 }
 
-void Deck::insert(vector<Card> &cardlist, Card card)
-{
-    cout << "korv 0 " << endl;
-
-    for (int i = 0; i < cardlist.size(); i++)
+void Deck::insert(vector<Card> &cardlist, Card card) {
+    // starting from zero
+    int i = 0;
+    // find the index of the first card in the list that is >= to the card to insert
+    for (i; i < cardlist.size(); ++i)
     {
-
-        card = cardlist[i];
-        int j = i;
-        cout << "korv 1" << endl;
-
-        while (j >= 0 && cardlist[j] > card)
-        {
-            cardlist[j + 1] = cardlist[j];
-            j--;
-            cout << "korv 2" << endl;
-        }
-        cardlist[j + 1] = card;
+         if (card < cardlist[i])
+             break;
     }
+    // insert the new card before that index
+    cardlist.insert(cardlist.begin() + i, card);
 }
