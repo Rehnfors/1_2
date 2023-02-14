@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 
 using namespace std;
@@ -8,7 +9,8 @@ enum Suit {
     Hearts,
     Diamonds,
     Spades,
-    Clubs
+    Clubs,
+    Joker
 };
 
 class Card
@@ -19,19 +21,19 @@ private:
 public:
     Card(int rank, Suit suit);
     
-    bool operator == (Card const &other)
+    friend bool operator == (const Card &lhs, const Card &rhs)
     {
-        return rank == other.rank;
+        return lhs.rank == rhs.rank;
     }
 
-    bool operator < (Card const &other)
+    friend bool operator < (const Card &lhs, const Card &rhs)
     {
-        return rank < other.rank;
+        return lhs.rank < rhs.rank;
     }
 
-    bool operator > (Card const &other)
+    friend bool operator > (const Card &lhs, const Card &rhs)
     {
-        return rank > other.rank;
+        return lhs.rank > rhs.rank;
     }
 
     friend ostream & operator << (ostream &out, const Card &c);
@@ -44,6 +46,7 @@ private:
 public:
     Deck();
     friend ostream & operator << (ostream &out, const Deck &d);
+    vector<Card>& get_cards();
     int size();
     void shuffle();
     void sort();
@@ -51,4 +54,5 @@ public:
     void put(Card card);
 
     static void insert(vector<Card> &cardlist, Card card);
+    void remove_jokers(vector<Card> &cardlist);
 };

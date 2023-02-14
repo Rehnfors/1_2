@@ -5,7 +5,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-     Deck deck = Deck();
+    Deck deck = Deck();
     cout << "Fresh deck: " << deck << endl;
     deck.shuffle();
     cout << "Shuffled deck: " << deck << endl;

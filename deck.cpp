@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <iterator>
 
 using namespace std;
 
@@ -23,6 +24,8 @@ const string SuitToString(Suit s)
         return "S";
     case Suit::Clubs:
         return "C";
+    case Suit::Joker:
+        return "Joker";
     }
     return "";
 }
@@ -53,6 +56,8 @@ ostream &operator<<(ostream &out, const Card &c)
     case 13:
         r = 'K';
         break;
+    case 14:
+        break;
     default:
         r = to_string(c.rank);
         break;
@@ -75,6 +80,10 @@ Deck::Deck()
             cards.push_back(Card(r, s));
         }
     }
+    for (int i = 0; i < 3; i++)
+    {
+        cards.push_back(Card(14, Joker)); // Adding Jokers
+    }
 }
 
 /**
@@ -90,6 +99,11 @@ ostream &operator<<(ostream &out, const Deck &d)
     }
 
     return out;
+}
+
+vector<Card>& Deck::get_cards()
+{
+    return this->cards;
 }
 
 /**
@@ -144,15 +158,34 @@ void Deck::put(Card card)
     cards.push_back(card);
 }
 
-void Deck::insert(vector<Card> &cardlist, Card card) {
+void Deck::insert(vector<Card> &cardlist, Card card)
+{
     // starting from zero
     int i = 0;
     // find the index of the first card in the list that is >= to the card to insert
     for (i; i < cardlist.size(); ++i)
     {
-         if (card < cardlist[i])
-             break;
+        if (card < cardlist[i])
+            break;
     }
     // insert the new card before that index
     cardlist.insert(cardlist.begin() + i, card);
 }
+
+
+/*
+void Deck::remove_jokers(vector<Card> &cardlist)
+{
+    Card card(14, Joker);
+    vector::iterator i;
+
+     for(cardlist::iterator i = cardlist.begin(); i < cardlist.end(); i++)
+    {
+        if(cardlist[i] == card)
+        {
+            cardlist.erase(i);
+        }
+    }
+
+}
+*/
